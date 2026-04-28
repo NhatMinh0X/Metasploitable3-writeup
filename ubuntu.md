@@ -347,7 +347,7 @@ xmlrpc.php              [Status: 200, Size: 42, Words: 6, Lines: 1, Duration: 20
 ```
 
 - file that contains the version of Drupal
-![[Pasted image 20260128141223.png]]
+![img](images/Pasted-image-20260128141223.png)
 
 - I've tried all the modules related to this version but haven't gotten the expected results. because when i have tried Nmap scanning it was the version before 7.5  it was vulnerable to CVE-2014-3704 which affected only versions before 7.32.
 
@@ -390,13 +390,13 @@ With The Metasploit, I have here found the drupageddon module for this CVE
 
 After running the exploit we got the shell as below picture
 
-![[Pasted image 20260128142446.png]]
+![img](images/Pasted-image-20260128142446.png)
 ***
 
 ## Payroll_app
 **Payroll** has **SQL injection vulnerability type** **UNION SQL injection** in the login page
 
-![[Pasted image 20260128144303.png]]
+![img](images/Pasted-image-20260128144303.png)
 
 - Using SQL injection get DB + Table
 
@@ -412,7 +412,7 @@ After running the exploit we got the shell as below picture
 
 - SQL Injection: `OR 1=1 UNION SELECT null,null,username,password FROM users#`
 
-![[Pasted image 20260128145100.png]]
+![img](images/Pasted-image-20260128145100.png)
 
 - Login in with SSH: `leia_organa:help_me_obiwan`
 ```bash
@@ -437,18 +437,18 @@ uid=1111(leia_organa) gid=100(users) groups=100(users),27(sudo)
 # Shell as Unreal IRC Service 6697
 - Identify the Unreal IRC version: 
 
-![[Pasted image 20260128151506.png]]
+![img](images/Pasted-image-20260128151506.png)
 - unreal ircd 3.2.8.1. When we search Google for the version number we quickly find that this version may contain a backdoor:
 - https://www.rapid7.com/db/modules/exploit/unix/irc/unreal_ircd_3281_backdoor/.
 - Use this payload to exploit the vulnerability: https://github.com/Ranger11Danger/UnrealIRCd-3.2.8.1-Backdoor
 
 - Use payloads with Python options.
 
-![[Pasted image 20260128153011.png]]
+![img](images/Pasted-image-20260128153011.png)
 
 - And then a shell at `nc`:
 
-![[Pasted image 20260128153041.png]]
+![img](images/Pasted-image-20260128153041.png)
 
 ***
 # Privilege Escalation
@@ -456,20 +456,20 @@ uid=1111(leia_organa) gid=100(users) groups=100(users),27(sudo)
 
 After the reverse shell, we now have a stable shell and boba_fett is one of the docker groups which means it has access on docker without having to be in the the sudo group.
 
-![[Pasted image 20260128160511.png]]
+![img](images/Pasted-image-20260128160511.png)
 
 So, running docker images to list the installed images was Ubuntu one of the installed images which make the escalation a pace of cake.
 
-![[Pasted image 20260128160641.png]]
+![img](images/Pasted-image-20260128160641.png)
 
 
 `docker run -v /:/mnt –rm -it ubuntu chroot /mnt /bin/bash` by Mounting / in the Docker container and using `chroot` to give the full root access to the host system, allowing to write on the host files.
 
-![[Pasted image 20260128160931.png]]
+![img](images/Pasted-image-20260128160931.png)
 
 Setting /bin/bash to sets the SUID by chomd u+s /bin/bash to run it as a root.
 
-![[Pasted image 20260128161047.png]]
+![img](images/Pasted-image-20260128161047.png)
 
 After running it with the -p option to enable privileged mode and prevent dropping permissions, we now have the effective user ID (EUID) of root,
-![[Pasted image 20260128161407.png]]
+![img](images/Pasted-image-20260128161407.png)
