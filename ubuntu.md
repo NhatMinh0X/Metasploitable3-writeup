@@ -386,7 +386,7 @@ Nmap done: 1 IP address (1 host up) scanned in 10.71 seconds
 
 With The Metasploit, I have here found the drupageddon module for this CVE
 
-![[Screenshot 2026-01-28 at 14.19.47.png]]
+![img](images/cve-2017-3704.png)
 
 After running the exploit we got the shell as below picture
 
