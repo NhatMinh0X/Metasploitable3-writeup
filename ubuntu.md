@@ -112,7 +112,7 @@ Content-Type: text/html;charset=UTF-8
 ```
 
 - Image from Wappalyzer
- ![[images/Pasted image 20260128084126.png]]
+ ![img](images/Pasted-image-20260128084126.png)
 ***
 
 # Shell as FTP (ProFTPD 1.3.5)
